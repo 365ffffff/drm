@@ -98,6 +98,11 @@ AC_ARG_ENABLE(freedreno-experimental-api,
 	      [Enable support for freedreno's experimental API (default: disabled)]),
 	      [FREEDRENO=$enableval], [FREEDRENO=no])
 
+AC_ARG_ENABLE(openfimg-experimental-api,
+	      AS_HELP_STRING([--enable-openfimg-experimental-api],
+	      [Enable support for openfimg's experimental API (default: disabled)]),
+	      [OPENFIMG=$enableval], [OPENFIMG=no])
+
 AC_ARG_ENABLE(install-test-programs,
 		  AS_HELP_STRING([--enable-install-test-programs],
 		  [Install test programs (default: no)]),
@@ -214,6 +219,11 @@ fi
 AM_CONDITIONAL(HAVE_FREEDRENO, [test "x$FREEDRENO" = xyes])
 if test "x$FREEDRENO" = xyes; then
 	AC_DEFINE(HAVE_FREEDRENO, 1, [Have freedreno support])
+fi
+
+AM_CONDITIONAL(HAVE_OPENFIMG, [test "x$OPENFIMG" = xyes])
+if test "x$OPENFIMG" = xyes; then
+	AC_DEFINE(HAVE_OPENFIMG, 1, [Have openfimg support])
 fi
 
 AM_CONDITIONAL(HAVE_INSTALL_TESTS, [test "x$INSTALL_TESTS" = xyes])
@@ -380,6 +390,8 @@ AC_CONFIG_FILES([
 	exynos/libdrm_exynos.pc
 	freedreno/Makefile
 	freedreno/libdrm_freedreno.pc
+	openfimg/Makefile
+	openfimg/libdrm_openfimg.pc
 	tests/Makefile
 	tests/modeprint/Makefile
 	tests/modetest/Makefile
@@ -404,4 +416,5 @@ echo "  Nouveau API    $NOUVEAU"
 echo "  OMAP API       $OMAP"
 echo "  EXYNOS API     $EXYNOS"
 echo "  Freedreno API  $FREEDRENO"
+echo "  OpenFIMG API   $OPENFIMG"
 echo ""

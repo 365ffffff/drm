@@ -1,0 +1,11 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: libdrm_openfimg
+Description: Userspace interface to OpenFIMG kernel DRM services
+Version: @PACKAGE_VERSION@
+Libs: -L${libdir} -ldrm_openfimg
+Cflags: -I${includedir} -I${includedir}/libdrm -I${includedir}/openfimg
+Requires.private: libdrm
